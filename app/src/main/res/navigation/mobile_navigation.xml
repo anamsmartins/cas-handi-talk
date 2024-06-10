@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.cas.handitalk.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_quick_learn"
+        android:name="com.cas.handitalk.ui.quick_learn.QuickLearnFragment"
+        android:label="@string/menu_quick_learn"
+        tools:layout="@layout/fragment_quick_learn" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.cas.handitalk.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_guess"
+        android:name="com.cas.handitalk.ui.guess.GuessFragment"
+        android:label="@string/menu_guess"
+        tools:layout="@layout/fragment_guess" />
+
+    <fragment
+        android:id="@+id/nav_make"
+        android:name="com.cas.handitalk.ui.make.MakeFragment"
+        android:label="@string/menu_make"
+        tools:layout="@layout/fragment_make" />
 </navigation>
