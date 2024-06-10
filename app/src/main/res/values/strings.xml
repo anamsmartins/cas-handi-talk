@@ -11,4 +11,6 @@
     <string name="menu_quick_learn">👌 Quick Learn</string>
     <string name="menu_guess">✍️  Guess</string>
     <string name="menu_make">👊  Make</string>
+    <string name="guess_voice">Voice</string>
+    <string name="guess_text">Text</string>
 </resources>
