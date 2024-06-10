@@ -1,13 +1,13 @@
-package com.cas.handitalk.ui.home
+package com.cas.handitalk.ui.guess
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class GuessViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Welcome to \nHandiTalk!\n🖐️\n\n\n\n\nLet AI be your hands in\nlearning sign language!"
+        value = "This is guess Fragment"
     }
     val text: LiveData<String> = _text
 }
