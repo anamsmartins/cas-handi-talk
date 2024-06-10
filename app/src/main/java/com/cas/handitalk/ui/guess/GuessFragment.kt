@@ -8,7 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.MediaController
+import android.widget.TextView
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +39,7 @@ class GuessFragment : Fragment() {
         _binding = FragmentGuessBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        // Setup video player
         videoView = root.findViewById(R.id.guess_video)
 
         val mediaController = MediaController(requireContext())
@@ -50,6 +54,51 @@ class GuessFragment : Fragment() {
             mp.setVolume(0f, 0f) // Remove volume
             videoView.start()
         }
+
+        // Text button fields
+        val textBtn = root.findViewById<Button>(R.id.textBtn)
+        val textAnswerGuess = root.findViewById<EditText>(R.id.textAnswerGuess)
+        val confirmTextAnswerGuessBtn = root.findViewById<Button>(R.id.confirmTextAnswerGuessBtn)
+
+        // Voice button fields
+        val voiceBtn = root.findViewById<Button>(R.id.voiceBtn)
+        val voiceAnswerGuess = root.findViewById<TextView>(R.id.voiceAnswerGuess)
+
+        // Setup text button listener
+        textBtn.setOnClickListener {
+            // Toggle visibility of the text button fields
+            if (textAnswerGuess.visibility == EditText.VISIBLE) {
+                textAnswerGuess.visibility = EditText.GONE
+                confirmTextAnswerGuessBtn.visibility = Button.GONE
+            } else {
+                // Check voice button fields visibility
+                if (voiceAnswerGuess.visibility == TextView.VISIBLE) {
+                    voiceAnswerGuess.visibility = TextView.GONE
+                }
+
+                textAnswerGuess.visibility = EditText.VISIBLE
+                confirmTextAnswerGuessBtn.visibility = Button.VISIBLE
+            }
+        }
+
+        // Setup voice button listener
+        voiceBtn.setOnClickListener {
+            // Toggle visibility of the voice button fields
+            if (voiceAnswerGuess.visibility == EditText.VISIBLE) {
+                voiceAnswerGuess.visibility = EditText.GONE
+            } else {
+                // Check text button fields visibility
+                if (textAnswerGuess.visibility == EditText.VISIBLE) {
+                    textAnswerGuess.visibility = EditText.GONE
+                    confirmTextAnswerGuessBtn.visibility = Button.GONE
+                }
+
+                voiceAnswerGuess.visibility = EditText.VISIBLE
+            }
+
+        }
+
+
 
         return root
     }
