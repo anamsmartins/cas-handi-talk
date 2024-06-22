@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.google.mediapipe.examples.gesturerecognizer.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_quick_learn"
+        android:name="com.google.mediapipe.examples.gesturerecognizer.ui.quick_learn.QuickLearnFragment"
+        android:label="@string/menu_quick_learn"
+        tools:layout="@layout/fragment_quick_learn" />
+
+    <fragment
+        android:id="@+id/nav_guess"
+        android:name="com.google.mediapipe.examples.gesturerecognizer.ui.guess.GuessFragment"
+        android:label="@string/menu_guess"
+        tools:layout="@layout/fragment_guess" />
+
+    <fragment
+        android:id="@+id/nav_make"
+        android:name="com.google.mediapipe.examples.gesturerecognizer.ui.make.MakeFragment"
+        android:label="@string/menu_make"
+        tools:layout="@layout/fragment_make">
+
+        <action
+            android:id="@+id/action_camera_to_permissions"
+            app:destination="@id/permissions_fragment"
+            app:popUpTo="@id/nav_make"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/permissions_fragment"
+        android:name="com.google.mediapipe.examples.gesturerecognizer.fragment.PermissionsFragment"
+        android:label="PermissionsFragment">
+
+        <action
+            android:id="@+id/action_permissions_to_camera"
+            app:destination="@id/nav_make"
+            app:popUpTo="@id/permissions_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
