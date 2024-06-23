@@ -69,6 +69,12 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
     private lateinit var guessingWord: String
     private var won: Boolean = false
 
+    private var isCASWord: Boolean = false
+    private lateinit var wordC: TextView
+    private lateinit var wordA: TextView
+    private lateinit var wordS: TextView
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -91,6 +97,18 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
         }
 
         textViewGoalMake.text = guessingWord
+
+        if (guessingWord == "CAS"){
+            isCASWord = true;
+
+            wordC = binding.root.findViewById(R.id.textCMake) as TextView
+            wordA = binding.root.findViewById(R.id.textAMake) as TextView
+            wordS = binding.root.findViewById(R.id.textSMake) as TextView
+
+            wordC.text = "_"
+            wordA.text = "_"
+            wordS.text = "_"
+        }
 
         return root
     }
@@ -260,10 +278,8 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
                         gestureCategories.first()
                     )
 
-                    if (resultTest.categoryName() == guessingWord && !won){
-                        won = true
-                        guessedWord()
-                    }
+                    checkIfWon(resultTest.categoryName())
+
                 } else {
                     resultCategoryTextView.text = "--"
                     resultAccuracyTextView.text = ""
@@ -300,6 +316,34 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
         val learningWords: Array<LearningWord> = LearningWord.values()
         val randomIndex: Int = Random().nextInt(learningWords.size)
         return learningWords[randomIndex]
+    }
+
+    fun checkIfWon(category: String){
+        if (!isCASWord) {
+            if (category == guessingWord && !won) {
+                won = true
+                guessedWord()
+            }
+        }else{
+            if (category == "C"){
+                if (wordC.text !== category){
+                    wordC.text = category
+                }
+            } else if (category == "A"){
+                if (wordA.text !== category){
+                    wordA.text = category
+                }
+            } else if (category == "S"){
+                if (wordS.text !== category){
+                    wordS.text = category
+                }
+            }
+            if ((wordC.text == "C" && wordA.text == "A" && wordS.text == "S") && !won){
+                won = true
+                guessedWord()
+            }
+
+        }
     }
 
     fun guessedWord(){
