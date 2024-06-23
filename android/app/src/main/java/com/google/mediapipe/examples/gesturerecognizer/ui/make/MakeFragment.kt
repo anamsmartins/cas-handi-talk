@@ -1,7 +1,8 @@
 package com.google.mediapipe.examples.gesturerecognizer.ui.make
 
-import android.R.attr.name
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.FragmentTransaction
 import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Html
@@ -22,11 +23,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.mediapipe.examples.gesturerecognizer.GestureRecognizerHelper
+import com.google.mediapipe.examples.gesturerecognizer.LearningWord
 import com.google.mediapipe.examples.gesturerecognizer.R
 import com.google.mediapipe.examples.gesturerecognizer.databinding.FragmentMakeBinding
 import com.google.mediapipe.examples.gesturerecognizer.fragment.GestureRecognizerResultsAdapter
 import com.google.mediapipe.examples.gesturerecognizer.fragment.PermissionsFragment
+import com.google.mediapipe.examples.gesturerecognizer.ui.home.HomeFragment
 import com.google.mediapipe.tasks.vision.core.RunningMode
+import java.util.Random
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -62,6 +66,9 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
     /** Blocking ML operations are performed using this executor */
     private lateinit var backgroundExecutor: ExecutorService
 
+    private lateinit var guessingWord: String
+    private var won: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,8 +80,11 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
         _binding = FragmentMakeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textViewGoalMake = binding.root.findViewById(R.id.textGoalMake) as TextView
-        textViewGoalMake.text = "Word to guess!"
+        // Generate random guessing word
+        guessingWord = generateGuessingWord().toString()
+
+        val textViewGoalMake = binding.root.findViewById(R.id.textGuessingWordMake) as TextView
+        textViewGoalMake.text = guessingWord
 
         return root
     }
@@ -243,6 +253,11 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
                     gestureRecognizerResultAdapter.updateResults(
                         gestureCategories.first()
                     )
+
+                    if (resultTest.categoryName() == guessingWord && !won){
+                        won = true
+                        guessedWord()
+                    }
                 } else {
                     resultCategoryTextView.text = "--"
                     resultAccuracyTextView.text = ""
@@ -275,18 +290,39 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
         }
     }
 
-    fun guessedGoal(){
+    fun generateGuessingWord(): LearningWord {
+        val learningWords: Array<LearningWord> = LearningWord.values()
+        val randomIndex: Int = Random().nextInt(learningWords.size)
+        return learningWords[randomIndex]
+    }
 
+    fun guessedWord(){
+            val builder = AlertDialog.Builder(binding.root.context)
+            builder.setTitle("Guessed the word!")
+            builder.setMessage("Congratulations on guessing the word! 👊")
+            builder.setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                Navigation.findNavController(
+                    requireActivity(), R.id.nav_host_fragment_content_main
+                ).navigate(R.id.action_make_to_home)
+            }
+
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.show()
+    }
+
+    fun endModelRecognition(){
+        // Shut down our background executor
+        backgroundExecutor.shutdown()
+        backgroundExecutor.awaitTermination(
+            Long.MAX_VALUE, TimeUnit.NANOSECONDS
+        )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
 
-        // Shut down our background executor
-        backgroundExecutor.shutdown()
-        backgroundExecutor.awaitTermination(
-            Long.MAX_VALUE, TimeUnit.NANOSECONDS
-        )
+        endModelRecognition()
     }
 }

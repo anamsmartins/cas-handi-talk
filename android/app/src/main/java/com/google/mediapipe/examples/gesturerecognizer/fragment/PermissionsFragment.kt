@@ -72,7 +72,7 @@ class PermissionsFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             Navigation.findNavController(
                 requireActivity(),
-                R.id.fragment_container
+                R.id.nav_host_fragment_content_main
             ).navigate(
                 R.id.action_permissions_to_camera
             )

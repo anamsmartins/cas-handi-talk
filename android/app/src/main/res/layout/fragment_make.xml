@@ -73,7 +73,7 @@
             />
 
         <TextView
-            android:id="@+id/textGoalMake"
+            android:id="@+id/textGuessingWordMake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
