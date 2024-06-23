@@ -22,6 +22,15 @@
 
             <!-- Add multiple buttons here -->
             <Button
+                android:id="@+id/buttonQLCAS"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                android:text="CAS" />
+
+            <Button
                 android:id="@+id/buttonQLAfraid"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -31,31 +40,31 @@
                 android:text="Afraid" />
 
             <Button
-                android:id="@+id/buttonQLAngry"
+                android:id="@+id/buttonQLA"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="Angry" />
+                android:text="A" />
 
             <Button
-                android:id="@+id/buttonQLDone"
+                android:id="@+id/buttonQLC"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="Done" />
+                android:text="C" />
 
             <Button
-                android:id="@+id/buttonQLLove"
+                android:id="@+id/buttonQLS"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="Love" />
+                android:text="S" />
 
             <Button
                 android:id="@+id/buttonQLMore"
@@ -67,15 +76,6 @@
                 android:text="More" />
 
             <Button
-                android:id="@+id/buttonQLPlease"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
-                android:text="Please" />
-
-            <Button
                 android:id="@+id/buttonQLSad"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -85,32 +85,14 @@
                 android:text="Sad" />
 
             <Button
-                android:id="@+id/buttonQLSorry"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
-                android:text="Sorry" />
-
-            <Button
                 android:id="@+id/buttonQLStop"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="Stop" />
-
-            <Button
-                android:id="@+id/buttonQLWater"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
                 android:layout_marginBottom="50dp"
-                android:text="Water" />
+                android:text="Stop" />
 
         </LinearLayout>
     </ScrollView>

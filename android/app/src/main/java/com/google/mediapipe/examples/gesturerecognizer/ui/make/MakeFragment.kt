@@ -73,6 +73,9 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
         _binding = FragmentMakeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val textViewGoalMake = binding.root.findViewById(R.id.textGoalMake) as TextView
+        textViewGoalMake.text = "Word to guess!"
+
         return root
     }
 
@@ -270,6 +273,10 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             gestureRecognizerResultAdapter.updateResults(emptyList())
         }
+    }
+
+    fun guessedGoal(){
+
     }
 
     override fun onDestroyView() {

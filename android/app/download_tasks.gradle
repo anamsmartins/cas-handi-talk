@@ -15,7 +15,7 @@
  */
 
 task downloadTaskFile(type: Download) {
-    src 'https://drive.google.com/uc?export=download&id=1siAdmo5agAOlRPyBJQ-4mZh6OPzGddVq'
+    src 'https://drive.google.com/uc?export=download&id=12CZ-mSRAd1nmkvQk_UEdfenTbhRJM6Uh'
     dest project.ext.ASSET_DIR + '/gesture_recognizer.task'
     overwrite false
 }
