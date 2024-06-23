@@ -18,6 +18,9 @@
     <dimen name="stroke_small">4dp</dimen>
     <dimen name="round_button_medium">64dp</dimen>
 
+    <dimen name="image_preview_width">250dp</dimen>
+    <dimen name="image_preview_height">250dp</dimen>
+
     <!-- Bottom Sheet -->
     <dimen name="bottom_sheet_text_size">18sp</dimen>
     <dimen name="bottom_sheet_padding">16dp</dimen>

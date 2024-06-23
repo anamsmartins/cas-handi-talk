@@ -2,14 +2,17 @@ package com.google.mediapipe.examples.gesturerecognizer.ui.make
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.FragmentTransaction
+import android.app.Dialog
 import android.content.res.Configuration
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.camera.core.AspectRatio
@@ -28,7 +31,6 @@ import com.google.mediapipe.examples.gesturerecognizer.R
 import com.google.mediapipe.examples.gesturerecognizer.databinding.FragmentMakeBinding
 import com.google.mediapipe.examples.gesturerecognizer.fragment.GestureRecognizerResultsAdapter
 import com.google.mediapipe.examples.gesturerecognizer.fragment.PermissionsFragment
-import com.google.mediapipe.examples.gesturerecognizer.ui.home.HomeFragment
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import java.util.Random
 import java.util.concurrent.ExecutorService
@@ -110,7 +112,44 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
             wordS.text = "_"
         }
 
+        // Button Preview
+        val buttonPreview: Button = root.findViewById(R.id.buttonMakePreview)
+        buttonPreview.setOnClickListener {
+            showPreviewImagePopup(guessingWord + ".png")
+        }
+
         return root
+    }
+
+    private fun showPreviewImagePopup(imageName: String) {
+        // Create a dialog with custom layout
+        val dialog = Dialog(binding.root.context)
+        dialog.setContentView(R.layout.preview_image)
+
+        // Find ImageView in the custom layout
+        val imageView = dialog.findViewById<ImageView>(R.id.image_preview_imageview)
+
+        // Load image from assets
+        try {
+            // Assuming your images are in the "assets" folder
+            // Access asset manager from the context
+            val assetManager = context?.assets
+            val inputStream = assetManager?.open(imageName)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            imageView.setImageBitmap(bitmap)
+            inputStream?.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        // Optional: Set dialog size or other properties if needed
+        dialog.window?.setLayout(
+            resources.getDimensionPixelSize(R.dimen.image_preview_width),
+            resources.getDimensionPixelSize(R.dimen.image_preview_height)
+        )
+
+        // Show the dialog
+        dialog.show()
     }
 
     override fun onResume() {

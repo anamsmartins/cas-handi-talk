@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.make.MakeFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,6 +14,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buttonMakePreview"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="✍️"
+            android:textSize="20dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp">
+        </Button>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/camera_container"
@@ -26,7 +36,7 @@
                 android:layout_width="300dp"
                 android:layout_height="350dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:scaleType="fillStart" />
