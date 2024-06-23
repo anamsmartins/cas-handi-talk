@@ -15,13 +15,18 @@
         android:id="@+id/nav_quick_learn"
         android:name="com.google.mediapipe.examples.gesturerecognizer.ui.quick_learn.QuickLearnFragment"
         android:label="@string/menu_quick_learn"
-        tools:layout="@layout/fragment_quick_learn" />
+        tools:layout="@layout/fragment_quick_learn">
 
-    <fragment
-        android:id="@+id/nav_guess"
-        android:name="com.google.mediapipe.examples.gesturerecognizer.ui.guess.GuessFragment"
-        android:label="@string/menu_guess"
-        tools:layout="@layout/fragment_guess" />
+        <action
+            android:id="@+id/action_quick_learn_to_make"
+            app:destination="@id/nav_make"
+            app:popUpTo="@id/nav_quick_learn"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="quickLearnWord"
+                app:argType="string"/>
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_make"

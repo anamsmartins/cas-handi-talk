@@ -80,10 +80,16 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
         _binding = FragmentMakeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Generate random guessing word
-        guessingWord = generateGuessingWord().toString()
+        val quickLearnWord = arguments?.getString("quickLearnWord")
 
         val textViewGoalMake = binding.root.findViewById(R.id.textGuessingWordMake) as TextView
+        if (quickLearnWord == null) {
+            // Generate random guessing word
+            guessingWord = generateGuessingWord().toString()
+        } else {
+            guessingWord = quickLearnWord
+        }
+
         textViewGoalMake.text = guessingWord
 
         return root

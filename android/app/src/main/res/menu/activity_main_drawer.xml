@@ -11,9 +11,6 @@
             android:id="@+id/nav_quick_learn"
             android:title="@string/menu_quick_learn" />
         <item
-            android:id="@+id/nav_guess"
-            android:title="@string/menu_guess" />
-        <item
             android:id="@+id/nav_make"
             android:title="@string/menu_make" />
     </group>
