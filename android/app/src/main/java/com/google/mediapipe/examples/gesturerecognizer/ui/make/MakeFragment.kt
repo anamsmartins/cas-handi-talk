@@ -219,6 +219,8 @@ class MakeFragment : Fragment(), GestureRecognizerHelper.GestureRecognizerListen
 
     // Initialize CameraX, and prepare to bind the camera use cases
     private fun setUpCamera() {
+        val context = context ?: return
+
         val cameraProviderFuture =
             ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener(
